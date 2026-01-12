@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Recruiter Co-Pilot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="app-container">
+        <header>
+            <h1>AI Recruiter Co-Pilot</h1>
+            <p>Intelligent Gap Analysis & Resume Screening</p>
+        </header>
+
+        <main>
+            <section class="sidebar">
+                
+                <div class="card">
+                    <h2>📂 Upload Resume</h2>
+                    <div class="upload-box">
+                        <input type="file" id="resumeUpload" accept=".pdf">
+                    </div>
+                    <button onclick="uploadResume()" class="primary-btn" style="margin-top:10px; background-color:#374151;">
+                        Upload & Ingest
+                    </button>
+                    <div id="uploadStatus" style="margin-top:10px; font-size:0.9rem;"></div>
+                </div>
+
+                <div class="card">
+                    <h2>⚡ Analysis Config</h2>
+                    
+                    <label class="input-label">Select Candidate</label>
+                    <select id="resumeSelect">
+                        <option value="" disabled selected>Loading...</option>
+                    </select>
+
+                    <label class="input-label">Job Description (JD)</label>
+                    <textarea id="jdInput" placeholder="Paste the Job Description here..."></textarea>
+                    
+                    <button id="analyzeBtn" onclick="analyzeJob()" class="primary-btn">
+                        <span id="btnText">Run Gap Analysis</span>
+                        <div id="loader" class="spinner" style="display:none;"></div>
+                    </button>
+                </div>
+            </section>
+
+            <section class="output-section">
+                
+                <div id="welcomeMessage" class="card" style="text-align:center; padding:50px;">
+                    <h2 style="justify-content:center; color:#9CA3AF;">Ready to Analyze</h2>
+                    <p style="color:#6B7280;">Select a candidate and paste a JD to see the breakdown.</p>
+                </div>
+
+                <div id="resultsContainer" style="display:none;">
+                    
+                    <div class="card">
+                        <div class="score-card">
+                            <div class="score-ring" id="scoreRing">0%</div>
+                            <div class="candidate-info">
+                                <h2 id="candidateName">Candidate Name</h2>
+                                <p id="summaryText">Summary goes here...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid-2-col">
+                        <div class="card">
+                            <h2 style="color:#059669;">✅ Key Matches</h2>
+                            <div id="matchesList" class="tags-container"></div>
+                        </div>
+                        <div class="card">
+                            <h2 style="color:#DC2626;">⚠️ Critical Gaps</h2>
+                            <div id="missingList" class="tags-container"></div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h2>🎤 Recommended Interview Plan</h2>
+                        <ul id="questionsList" class="questions-list"></ul>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

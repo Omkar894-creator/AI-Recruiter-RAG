@@ -1,0 +1,26 @@
+# --- Python & Virtual Env ---
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+*.egg-info/
+
+# --- Environment Variables (CRITICAL) ---
+.env
+
+# --- Database & Storage (Don't commit data) ---
+chroma_db/
+preprocessed_db/
+
+# --- User Uploads ---
+resumes/
+data/
+
+# --- IDE Settings ---
+.vscode/
+.idea/
+
+# --- OS Files ---
+.DS_Store
+Thumbs.db
